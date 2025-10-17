@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediksi Risiko Kredit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>💳 Prediksi Risiko Kredit Nasabah</h1>
+    <form action="/predict" method="post">
+
+        <h3>🧍 Data Nasabah</h3>
+        <label>Batas Kredit</label>
+        <select name="LIMIT_BAL">
+            <option value="20000">20 Ribu</option>
+            <option value="50000">50 Ribu</option>
+            <option value="100000">100 Ribu</option>
+            <option value="300000">300 Ribu</option>
+            <option value="500000">500 Ribu</option>
+        </select>
+
+        <label>Jenis Kelamin</label>
+        <select name="SEX">
+            <option value="1">Laki-laki</option>
+            <option value="2">Perempuan</option>
+        </select>
+
+        <label>Pendidikan</label>
+        <select name="EDUCATION">
+            <option value="1">Pasca Sarjana</option>
+            <option value="2">Sarjana</option>
+            <option value="3">SMA</option>
+            <option value="4">Lainnya</option>
+        </select>
+
+        <label>Status Pernikahan</label>
+        <select name="MARRIAGE">
+            <option value="1">Menikah</option>
+            <option value="2">Belum Menikah</option>
+            <option value="3">Cerai</option>
+        </select>
+
+        <label>Usia</label>
+        <select name="AGE">
+            <option value="25">25 Tahun</option>
+            <option value="30">30 Tahun</option>
+            <option value="35">35 Tahun</option>
+            <option value="40">40 Tahun</option>
+            <option value="45">45 Tahun</option>
+        </select>
+
+        <h3>💳 Informasi Tagihan</h3>
+        {% for col in ["BILL_AMT1","BILL_AMT2","BILL_AMT3"] %}
+        <label>Tagihan Bulan {{ loop.index }}</label>
+        <select name="{{ col }}">
+            <option value="0">Tidak Ada</option>
+            <option value="50000">50 Ribu</option>
+            <option value="100000">100 Ribu</option>
+            <option value="300000">300 Ribu</option>
+            <option value="500000">500 Ribu</option>
+        </select>
+        {% endfor %}
+
+        <h3>💰 Informasi Pembayaran</h3>
+        <label>Status Pembayaran Bulan Terakhir</label>
+        <select name="PAY_0">
+            <option value="-1">Tepat Waktu</option>
+            <option value="1">Terlambat 1 Bulan</option>
+            <option value="2">Terlambat 2 Bulan</option>
+            <option value="3">Terlambat 3 Bulan</option>
+        </select>
+
+        <label>Pembayaran Terakhir (PAY_AMT1)</label>
+        <select name="PAY_AMT1">
+            <option value="0">Belum Bayar</option>
+            <option value="10000">10 Ribu</option>
+            <option value="50000">50 Ribu</option>
+            <option value="100000">100 Ribu</option>
+        </select>
+
+        <!-- Sisanya auto isi default -->
+        <input type="hidden" name="PAY_2" value="-1">
+        <input type="hidden" name="PAY_3" value="-1">
+        <input type="hidden" name="PAY_4" value="-1">
+        <input type="hidden" name="PAY_5" value="-1">
+        <input type="hidden" name="PAY_6" value="-1">
+        <input type="hidden" name="BILL_AMT4" value="0">
+        <input type="hidden" name="BILL_AMT5" value="0">
+        <input type="hidden" name="BILL_AMT6" value="0">
+        <input type="hidden" name="PAY_AMT2" value="0">
+        <input type="hidden" name="PAY_AMT3" value="0">
+        <input type="hidden" name="PAY_AMT4" value="0">
+        <input type="hidden" name="PAY_AMT5" value="0">
+        <input type="hidden" name="PAY_AMT6" value="0">
+
+        <button type="submit">🔍 Prediksi Sekarang</button>
+    </form>
+</div>
+</body>
+</html>
